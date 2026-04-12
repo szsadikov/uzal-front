@@ -1,7 +1,7 @@
 import './locales'
 
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -23,11 +23,11 @@ function App() {
 		<QueryClientProvider client={queryClient}>
 			<Provider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
-					<BrowserRouter basename={import.meta.env.BASE_URL}>
+					<HashRouter>
 						<Theme>
 							<Layout />
 						</Theme>
-					</BrowserRouter>
+					</HashRouter>
 				</PersistGate>
 			</Provider>
 			<ReactQueryDevtools initialIsOpen={false} />
