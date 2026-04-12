@@ -7,7 +7,6 @@ import ProtectedRoute from '@/components/route/ProtectedRoute'
 import PublicRoute from '@/components/route/PublicRoute'
 import Loading from '@/components/shared/Loading'
 import PageContainer from '@/components/template/PageContainer'
-import appConfig from '@/configs/app.config'
 import { protectedRoutes, publicRoutes } from '@/configs/routes.config'
 import { lesseeRoutes } from '@/configs/routes.config/lessee.routes'
 
