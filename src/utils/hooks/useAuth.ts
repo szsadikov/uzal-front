@@ -21,9 +21,9 @@ const BRANCH_ROLES = [
 const MONITORING_ROLES = [MONITORING, ZAMPREDMONITORING]
 
 export function getEntryPathByRole(role: string): string {
-	if (OFFICE_ROLES.includes(role)) return '/dashboard/office'
-	if (BRANCH_ROLES.includes(role)) return '/dashboard/branch'
-	if (MONITORING_ROLES.includes(role)) return '/dashboard/monitoring'
+	if (OFFICE_ROLES.includes(role as never)) return '/dashboard/office'
+	if (BRANCH_ROLES.includes(role as never)) return '/dashboard/branch'
+	if (MONITORING_ROLES.includes(role as never)) return '/dashboard/monitoring'
 	return appConfig.authenticatedEntryPath
 }
 
