@@ -1,0 +1,46 @@
+/* styles/monitoring-table.css */
+.monitoring-table table {
+	table-layout: fixed;
+}
+.monitoring-table th,
+.monitoring-table td {
+	vertical-align: middle;
+}
+
+/* Sticky: chapdagi 2 ta, o‘ngdagi 1 ta */
+.monitoring-table .col-idx {
+	position: sticky;
+	left: 0;
+	z-index: 2;
+}
+.monitoring-table .col-client {
+	position: sticky;
+	left: 72px;
+	z-index: 2;
+}
+.monitoring-table .col-photo {
+	position: sticky;
+	right: 0;
+	z-index: 2;
+}
+
+/* Qator balandligi va zebra */
+.monitoring-table tbody tr {
+	height: 52px;
+}
+.monitoring-table tbody tr:nth-child(odd) td {
+	background: rgba(0, 0, 0, 0.015);
+}
+
+/* Ellipsis yordamchilari */
+.td-clip {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.td-2row {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}

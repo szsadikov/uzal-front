@@ -1,0 +1,114 @@
+/* Root blokni moslashuvchan qilamiz */
+.demand-letter > div {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: clamp(12px, 5vw, 88px) !important;
+  font-size: clamp(12px, 1.7vw, 14px) !important;
+  line-height: 1.6 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5dc !important;
+}
+
+/* Header grid – katta ekranda 3 ustun, kichikda 1 ustun */
+@media (max-width: 768px) {
+  .demand-letter > div > :first-child {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    row-gap: 8px !important;
+    text-align: center !important;
+  }
+
+  .demand-letter > div > :first-child img {
+    width: 64px !important;
+    height: 64px !important;
+    object-fit: contain !important;
+    margin: 8px auto !important;
+  }
+}
+
+/* Email qatori */
+@media (max-width: 768px) {
+  .demand-letter > div > :nth-child(2) {
+    font-size: 12px !important;
+    word-break: break-word !important;
+  }
+}
+
+/* Sana/№ bloki */
+@media (max-width: 768px) {
+  .demand-letter > div > :nth-child(5) {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    white-space: pre-line !important;
+  }
+}
+
+/* Qabul qiluvchi blok */
+@media (max-width: 768px) {
+  .demand-letter > div > :nth-child(6) {
+    text-align: left !important;
+  }
+}
+
+/* Matn qismi */
+@media (max-width: 768px) {
+  .demand-letter > div > :nth-child(8) {
+    padding-top: 8px !important;
+  }
+}
+
+/* Imzo qatori */
+@media (max-width: 640px) {
+  .demand-letter > div > :nth-child(9) {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    row-gap: 8px !important;
+  }
+}
+
+/* Juda kichik ekranlar */
+@media (max-width: 420px) {
+  .demand-letter > div {
+    padding: 12px !important;
+    border-width: 1px !important;
+  }
+}
+
+/* Print (ixtiyoriy) */
+@media print {
+  .demand-letter > div {
+    max-width: 794px !important; /* ~A4 eni (96dpi) */
+    padding: 24mm !important;
+    border: none !important;
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+
+  .demand-letter > div > :first-child img {
+    width: 25mm !important;
+    height: 25mm !important;
+  }
+}
+
+/* --- PDF capture payti tozalash va kattaroq shrift --- */
+.pdf-clean,
+.pdf-clean * {
+  background: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.pdf-clean {
+  font-size: 16px !important; /* ekranga tegmaydi, faqat PDF payti */
+  line-height: 1.6 !important;
+}
+
+/* Inline background-color bo'lsa ham oq bo'lsin */
+.pdf-clean [style*="background-color"] {
+  background-color: #fff !important;
+}
+

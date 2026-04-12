@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
+    restart: unless-stopped
+    ports:
+      - '80:80'
+    environment:
+      - ENVIRONMENT
+      - VITE_API_SERVER_URL
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  app-network:
+    external: true
+    name: uzal_backend_app-network

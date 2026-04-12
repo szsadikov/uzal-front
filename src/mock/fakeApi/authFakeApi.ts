@@ -1,0 +1,109 @@
+import isEmpty from 'lodash/isEmpty'
+import uniqueId from 'lodash/uniqueId'
+import { Response, Server } from 'miragejs'
+
+export default function authFakeApi(server: Server, apiPrefix: string) {
+	// Real login endpoint used by auth.service.ts
+	server.post(`${apiPrefix}/profile/token/`, (schema, { requestBody }) => {
+		const body = JSON.parse(requestBody)
+		const user = schema.db.signInUserData.findBy({
+			accountUserName: body.username,
+			password: body.password
+		})
+		if (user) {
+			return {
+				token: 'mock-dev-token-abc123',
+				user: {
+					id: 1,
+					username: user.accountUserName,
+					first_name: 'Админ',
+					middle_name: '',
+					last_name: 'Пользователь',
+					phone_number: '+998901234567',
+					email: user.email,
+					pinfl: '',
+					is_active: true,
+					profile_picture: '',
+					last_login: new Date().toISOString(),
+					// ВАЖНО: роль должна быть 'admin' (не 'superadmin').
+					// С ролью 'admin' сайдбар показывает: Реестр пользователей, Сотрудники, Филиалы, Договор, SMS сервис.
+					// Если поменять на 'superadmin' — Реестр пользователей пропадёт (authority: [ADMIN] only)
+					// и появятся все остальные разделы (Каталог, Склад, Мониторинг и т.д.).
+					role: 'admin',
+					role_id: 2,
+					parent_role_id: 2,
+					procuration_number: 0,
+					role_obj: { id: 2, name: 'admin', name_ru: 'Администратор', name_uz: 'Administrator' },
+					region: { id: 1, name_ru: 'Ташкентская область', name_uz: 'Toshkent viloyati', region_code: '10' }
+				}
+			}
+		}
+		return new Response(401, {}, { detail: 'No active account found with the given credentials' })
+	})
+
+	server.post(`${apiPrefix}/sign-in`, (schema, { requestBody }) => {
+		const { userName, password } = JSON.parse(requestBody)
+		const user = schema.db.signInUserData.findBy({
+			accountUserName: userName,
+			password
+		})
+		console.log('user', user)
+		if (user) {
+			const { avatar, userName, email, authority } = user
+
+			return {
+				user: { avatar, userName, email, authority },
+				token: 'wVYrxaeNa9OxdnULvde1Au5m5w63'
+			}
+		}
+
+		return new Response(401, { some: 'header' }, { message: 'Invalid email or password!' })
+	})
+
+	server.post(`${apiPrefix}/sign-out`, () => {
+		return true
+	})
+
+	server.post(`${apiPrefix}/sign-up`, (schema, { requestBody }) => {
+		const { userName, password, email } = JSON.parse(requestBody)
+		const userExist = schema.db.signInUserData.findBy({
+			accountUserName: userName
+		})
+		const emailUsed = schema.db.signInUserData.findBy({ email })
+		const newUser = {
+			avatar: '/img/avatars/thumb-1.jpg',
+			userName,
+			email,
+			authority: ['admin', 'user']
+		}
+		if (!isEmpty(userExist)) {
+			const errors = [{ message: '', domain: 'global', reason: 'invalid' }]
+
+			return new Response(400, { some: 'header' }, { errors, message: 'User already exist!' })
+		}
+
+		if (!isEmpty(emailUsed)) {
+			const errors = [{ message: '', domain: 'global', reason: 'invalid' }]
+
+			return new Response(400, { some: 'header' }, { errors, message: 'Email already used' })
+		}
+
+		schema.db.signInUserData.insert({
+			...newUser,
+			...{ id: uniqueId('user_'), password, accountUserName: userName }
+		})
+
+		return {
+			user: newUser,
+			token: 'wVYrxaeNa9OxdnULvde1Au5m5w63'
+		}
+	})
+
+	server.post(`${apiPrefix}/forgot-password`, () => {
+		return true
+	})
+
+	server.post(`${apiPrefix}/reset-password`, () => {
+		return true
+	})
+}

@@ -1,0 +1,30 @@
+import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'
+import { useConfig } from '../ConfigProvider'
+
+export type SorterProps = { sort?: boolean | 'asc' | 'desc' }
+
+const Sorter = ({ sort }: SorterProps) => {
+	const { themeColor, primaryColorLevel } = useConfig()
+
+	const color = `text-${themeColor}-${primaryColorLevel}`
+
+	const renderSort = () => {
+		if (typeof sort === 'boolean') {
+			return <FaSort />
+		}
+
+		if (sort === 'asc') {
+			return <FaSortUp className={color} />
+		}
+
+		if (sort === 'desc') {
+			return <FaSortDown className={color} />
+		}
+
+		return null
+	}
+
+	return <div className='inline-flex ml-0.5'>{renderSort()}</div>
+}
+
+export default Sorter

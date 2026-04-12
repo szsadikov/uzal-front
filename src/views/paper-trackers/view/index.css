@@ -1,0 +1,37 @@
+/* READ-ONLY WRAPPER */
+.pt-readonly, .pt-readonly * {
+  /* foydalanuvchilar tahrirlay olmasin */
+  pointer-events: none !important;
+}
+
+/* Ko'rinish chiroyli bo'lsin: disabled kul rangga o'tib ketmasin */
+.pt-readonly input,
+.pt-readonly select,
+.pt-readonly textarea,
+.pt-readonly .ant-input,
+.pt-readonly .ant-select-selector,
+.pt-readonly .ant-picker-input > input {
+  background-color: #fff !important;
+  color: #111827 !important; /* text-gray-900 */
+  -webkit-text-fill-color: #111827 !important; /* Safari */
+  opacity: 1 !important;
+}
+
+/* Formik / Button submitlarni yashirish (kerak bo'lsa) */
+.pt-readonly button[type="submit"],
+.pt-readonly .submit-actions,
+.pt-readonly .form-actions {
+  display: none !important;
+}
+
+/* Agar tab ichida fayl yuklash/ochirish tugmalari bo'lsa, ularni ham yashiring */
+.pt-readonly .upload-area,
+.pt-readonly .delete-file-btn,
+.pt-readonly .attach-file-btn {
+  display: none !important;
+}
+
+.pt-tabs button { outline: none; }
+.pt-segment { box-shadow: inset 0 0 0 1px rgba(0,0,0,.04); }
+.paper-preview { padding-bottom: .25rem; }
+
