@@ -20,38 +20,38 @@ const layouts = [
 	{
 		value: LAYOUT_TYPE_CLASSIC,
 		label: 'Classic',
-		src: pub('/img/thumbs/layouts/classic.jpg',
-		srcDark: pub('/img/thumbs/layouts/classic-dark.jpg'
+		src: pub('/img/thumbs/layouts/classic.jpg'),
+		srcDark: pub('/img/thumbs/layouts/classic-dark.jpg')
 	},
 	{
 		value: LAYOUT_TYPE_MODERN,
 		label: 'Mordern',
-		src: pub('/img/thumbs/layouts/modern.jpg',
-		srcDark: pub('/img/thumbs/layouts/modern-dark.jpg'
+		src: pub('/img/thumbs/layouts/modern.jpg'),
+		srcDark: pub('/img/thumbs/layouts/modern-dark.jpg')
 	},
 	{
 		value: LAYOUT_TYPE_STACKED_SIDE,
 		label: 'Stacked Side',
-		src: pub('/img/thumbs/layouts/stackedSide.jpg',
-		srcDark: pub('/img/thumbs/layouts/stackedSide-dark.jpg'
+		src: pub('/img/thumbs/layouts/stackedSide.jpg'),
+		srcDark: pub('/img/thumbs/layouts/stackedSide-dark.jpg')
 	},
 	{
 		value: LAYOUT_TYPE_SIMPLE,
 		label: 'Simple',
-		src: pub('/img/thumbs/layouts/simple.jpg',
-		srcDark: pub('/img/thumbs/layouts/simple-dark.jpg'
+		src: pub('/img/thumbs/layouts/simple.jpg'),
+		srcDark: pub('/img/thumbs/layouts/simple-dark.jpg')
 	},
 	{
 		value: LAYOUT_TYPE_DECKED,
 		label: 'Decked',
-		src: pub('/img/thumbs/layouts/decked.jpg',
-		srcDark: pub('/img/thumbs/layouts/decked-dark.jpg'
+		src: pub('/img/thumbs/layouts/decked.jpg'),
+		srcDark: pub('/img/thumbs/layouts/decked-dark.jpg')
 	},
 	{
 		value: LAYOUT_TYPE_BLANK,
 		label: 'Blank',
-		src: pub('/img/thumbs/layouts/blank.jpg',
-		srcDark: pub('/img/thumbs/layouts/blank-dark.jpg'
+		src: pub('/img/thumbs/layouts/blank.jpg'),
+		srcDark: pub('/img/thumbs/layouts/blank-dark.jpg')
 	}
 ]
 
