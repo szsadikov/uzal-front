@@ -9,7 +9,7 @@ interface LogoProps extends CommonProps {
 	logoWidth?: number | string
 }
 
-const LOGO_SRC_PATH = '/img/logo/'
+const LOGO_SRC_PATH = `${import.meta.env.BASE_URL}img/logo/`
 
 const Logo = (props: LogoProps) => {
 	const { type = 'full', mode = 'light', className, imgClass, style, logoWidth = 'auto' } = props
