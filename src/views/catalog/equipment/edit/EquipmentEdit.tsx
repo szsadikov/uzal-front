@@ -1,5 +1,6 @@
 // EquipmentEdit.tsx — URL params bilan
 import { SubmitHandler } from 'react-hook-form'
+import { pub } from '@/utils/publicUrl'
 import { useTranslation } from 'react-i18next'
 import { useLocation,useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQuery } from '@tanstack/react-query'
@@ -122,8 +123,8 @@ const EquipmentEdit = () => {
 				) : (
 					<div className='flex h-full flex-col items-center justify-center'>
 						<DoubleSidedImage
-							src='/img/others/img-2.png'
-							darkModeSrc='/img/others/img-2-dark.png'
+							src={pub('/img/others/img-2.png')}
+							darkModeSrc={pub('/img/others/img-2-dark.png')}
 							alt={t('Продукт не найден!')}
 						/>
 						<h3 className='mt-8'>{t('Продукт не найден!')}</h3>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { pub } from '@/utils/publicUrl'
 import { useTranslation } from 'react-i18next'
 import {
 	// HiOutlineBan,
@@ -254,7 +255,7 @@ const Notification = withHeaderItem(({ className }: { className?: string }) => {
 							<div className='text-center'>
 								<img
 									className='mx-auto mb-2 max-w-[150px]'
-									src='/img/others/no-notification.png'
+									src={pub('/img/others/no-notification.png')}
 									alt='no-notification'
 								/>
 								<h6 className='font-semibold'>{t('No notifications!')}</h6>

@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
+import { pub } from '@/utils/publicUrl'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import {
@@ -728,7 +729,7 @@ const NewApplicationsView = () => {
 										className='group relative flex min-h-[250px] flex-col items-center justify-center rounded-sm border border-gray-200 bg-white px-2 py-4 dark:border-gray-700 dark:bg-gray-800'
 									>
 										<img
-											src='/img/others/pdf-colored.png'
+											src={pub('/img/others/pdf-colored.png')}
 											alt='Pdf file'
 											className='h-[68px] w-[68px] text-gray-800 dark:text-white'
 										/>
@@ -756,8 +757,8 @@ const NewApplicationsView = () => {
 								>
 									<div className='flex max-w-full flex-col items-center justify-center px-4 py-2'>
 										<DoubleSidedImage
-											src='/img/others/pdf.png'
-											darkModeSrc='/img/others/pdf-dark.png'
+											src={pub('/img/others/pdf.png')}
+											darkModeSrc={pub('/img/others/pdf-dark.png')}
 											className='h-[68px] w-[68px] text-gray-800 dark:text-white'
 										/>
 										<p className='mt-4 text-center font-semibold text-gray-800 dark:text-white'>

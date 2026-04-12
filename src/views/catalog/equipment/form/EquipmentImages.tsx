@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { pub } from '@/utils/publicUrl'
 import { UseFormSetValue, UseFormWatch } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { HiEye, HiTrash } from 'react-icons/hi'
@@ -170,8 +171,8 @@ const EquipmentImages = ({ setValue, watch }: EquipmentImagesProps) => {
 							>
 								<div className='flex max-w-full flex-col items-center justify-center px-4 py-2'>
 									<DoubleSidedImage
-										src='/img/others/upload.png'
-										darkModeSrc='/img/others/upload-dark.png'
+										src={pub('/img/others/upload.png')}
+										darkModeSrc={pub('/img/others/upload-dark.png')}
 									/>
 									<p className='text-center font-semibold text-gray-800 dark:text-white'>
 										{t('Загрузить')}
@@ -190,8 +191,8 @@ const EquipmentImages = ({ setValue, watch }: EquipmentImagesProps) => {
 						<div className='my-16 text-center'>
 							<DoubleSidedImage
 								className='mx-auto'
-								src='/img/others/upload.png'
-								darkModeSrc='/img/others/upload-dark.png'
+								src={pub('/img/others/upload.png')}
+								darkModeSrc={pub('/img/others/upload-dark.png')}
 							/>
 							<p className='mx-auto max-w-[200px] font-semibold text-gray-800 dark:text-white'>
 								<Trans

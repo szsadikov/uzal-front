@@ -32,7 +32,7 @@ const LanguageSelector = withHeaderItem(({ className }: CommonProps) => {
 			{loading ? (
 				<Spinner size={20} />
 			) : (
-				<Avatar size={24} shape='circle' src={`/img/countries/${selectLangFlag}.png`} />
+				<Avatar size={24} shape='circle' src={`${import.meta.env.BASE_URL}img/countries/${selectLangFlag}.png`} />
 			)}
 		</div>
 	)
@@ -70,7 +70,7 @@ const LanguageSelector = withHeaderItem(({ className }: CommonProps) => {
 					onClick={() => onLanguageSelect(lang.value)}
 				>
 					<span className='flex items-center'>
-						<Avatar size={18} shape='circle' src={`/img/countries/${lang.flag}.png`} />
+						<Avatar size={18} shape='circle' src={`${import.meta.env.BASE_URL}img/countries/${lang.flag}.png`} />
 						<span className='ltr:ml-2 rtl:mr-2'>{lang.label}</span>
 					</span>
 					{locale === lang.value && <HiCheck className='text-lg text-emerald-500' />}

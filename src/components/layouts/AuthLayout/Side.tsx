@@ -1,4 +1,5 @@
 import { cloneElement, type ReactElement, type ReactNode, useEffect, useState } from 'react'
+import { pub } from '@/utils/publicUrl'
 import type { CommonProps } from '@/@types/common'
 import Logo from '@/components/template/Logo'
 import LanguageSelector from '@/components/template/LanguageSelector'
@@ -42,7 +43,7 @@ const Side = ({ children, content, themeMode, ...rest }: SideProps) => {
 		<div className='grid h-full lg:grid-cols-3'>
 			<div
 				className='hidden flex-col justify-between bg-cover bg-no-repeat px-16 py-6 lg:flex'
-				style={{ backgroundImage: `url('/img/others/auth-side-bg.jpg')` }}
+				style={{ backgroundImage: `url(\${pub('/img/others/auth-side-bg.jpg')})` }}
 			>
 				<Logo mode='dark' />
 			</div>

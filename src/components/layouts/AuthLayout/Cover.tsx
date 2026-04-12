@@ -1,4 +1,5 @@
 import type { ReactElement, ReactNode } from 'react'
+import { pub } from '@/utils/publicUrl'
 import { cloneElement } from 'react'
 import type { CommonProps } from '@/@types/common'
 import Logo from '@/components/template/Logo'
@@ -14,7 +15,7 @@ const Cover = ({ children, content, ...rest }: CoverProps) => {
 			<div
 				className='col-span-2 hidden flex-col justify-between bg-white bg-cover bg-no-repeat px-16 py-6 lg:flex dark:bg-gray-800'
 				style={{
-					backgroundImage: `url('/img/others/auth-cover-bg.jpg')`
+					backgroundImage: `url(\${pub('/img/others/auth-cover-bg.jpg')})`
 				}}
 			>
 				<Logo mode='dark' />
