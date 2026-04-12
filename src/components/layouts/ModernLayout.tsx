@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import Header from '@/components/template/Header'
 import LanguageSelector from '@/components/template/LanguageSelector'
 import MobileNav from '@/components/template/MobileNav'
@@ -16,6 +17,7 @@ import { useTranslation } from 'react-i18next'
 const ModernLayout = () => {
 	const { authenticated } = useAuth()
 	const { t } = useTranslation()
+	const navigate = useNavigate()
 
 	// const { user } = useAppSelector((state) => state.auth.session)
 	// const role = user?.role
@@ -48,7 +50,7 @@ const ModernLayout = () => {
 										variant='solid'
 										className='ml-2 px-8'
 										onClick={() =>
-											(window.location.href = appConfig.unAuthenticatedEntryPath + '?client')
+											navigate(appConfig.unAuthenticatedEntryPath + '?client')
 										}
 									>
 										{t('Войти')}

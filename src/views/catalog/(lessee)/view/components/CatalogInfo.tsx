@@ -76,7 +76,7 @@ const CatalogInfo = ({ tech, className }: Props) => {
 
 	const onLeaveRequest = () => {
 		if (!authenticated) {
-			window.location.href = appConfig.unAuthenticatedEntryPath + '?client'
+			navigate(appConfig.unAuthenticatedEntryPath + '?client')
 		} else {
 			setLeaveRequestDialogIsOpen(true)
 		}
