@@ -43,7 +43,7 @@ const Side = ({ children, content, themeMode, ...rest }: SideProps) => {
 		<div className='grid h-full lg:grid-cols-3'>
 			<div
 				className='hidden flex-col justify-between bg-cover bg-no-repeat px-16 py-6 lg:flex'
-				style={{ backgroundImage: `url(\${pub('/img/others/auth-side-bg.jpg')})` }}
+				style={{ backgroundImage: `url(${pub('/img/others/auth-side-bg.jpg')})` }}
 			>
 				<Logo mode='dark' />
 			</div>
