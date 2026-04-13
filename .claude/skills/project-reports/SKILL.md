@@ -1,14 +1,14 @@
 ---
 name: project-reports
-description: Automatically generates daily, weekly, and progress reports for a project based on git commits. Use this skill when the user types /daily, /weekly, /update-progress, or when session has been idle. Always trigger this skill at the end of a working session or when the user asks to log work, record progress, write a report, or update project status.
+description: Автоматически генерирует ежедневные, еженедельные и прогресс-отчёты на основе git-коммитов. Используй этот скилл когда пользователь пишет /daily, /weekly, /update-progress, или в конце рабочей сессии. Всегда запускай когда пользователь просит записать прогресс, создать отчёт или обновить статус проекта.
 ---
 
-# Project Reports Skill
+# Скилл: Отчёты по проекту
 
-Generates structured reports based on **real git data** — not memory.
-Reports are saved in `.claude/reports/` inside the current project folder.
+Генерирует структурированные отчёты на основе **реальных git-данных** — не из памяти.
+Отчёты сохраняются в `.claude/reports/` внутри текущей папки проекта.
 
-## Folder Structure
+## Структура папок
 
 ```
 .claude/
@@ -22,62 +22,62 @@ Reports are saved in `.claude/reports/` inside the current project folder.
 └── settings.json
 ```
 
-## Commands
+## Команды
 
-| Command | Action |
+| Команда | Действие |
 |---|---|
-| `/daily` | Write today's daily report manually |
-| `/weekly` | Generate weekly summary from daily reports |
-| `/update-progress` | Update progress.md with current project state |
+| `/daily` | Создать ежедневный отчёт вручную |
+| `/weekly` | Сгенерировать недельную сводку из дневных отчётов |
+| `/update-progress` | Обновить progress.md с текущим состоянием проекта |
 
-## How to Run
+## Как запускать
 
-For each command, run the corresponding script:
+Для каждой команды запускается соответствующий скрипт:
 
 ```bash
-# Daily report (manual)
+# Ежедневный отчёт (ручной режим)
 python3 .claude/skills/project-reports/scripts/daily.py --mode manual
 
-# Weekly report
+# Еженедельный отчёт
 python3 .claude/skills/project-reports/scripts/weekly.py
 
-# Update progress.md
+# Обновить progress.md
 python3 .claude/skills/project-reports/scripts/progress.py
 ```
 
-## Rules
+## Правила
 
-1. **Never write from memory** — always use git log as data source
-2. **Never overwrite a manual report** — check `written_by` flag first
-3. **Archive completed modules** — if marked ✅ and untouched for 14 days, move to progress_archive.md
-4. **One report per project** — determined by current working directory
+1. **Никогда не писать из памяти** — всегда использовать git log как источник данных
+2. **Никогда не перезаписывать ручной отчёт** — сначала проверить флаг `written_by`
+3. **Архивировать завершённые модули** — если помечено ✅ и не трогалось 14 дней, перенести в progress_archive.md
+4. **Один отчёт на проект** — определяется текущей рабочей директорией
 
-## Status Icons
+## Иконки статусов
 
-| Icon | Meaning |
+| Иконка | Значение |
 |---|---|
-| ✅ | Done and stable |
-| 🔄 | In progress |
-| ♻️ | Rework (was done, requirements changed) |
-| 📋 | Planned, not started |
-| ❌ | Blocked |
+| ✅ | Готово и стабильно |
+| 🔄 | В работе |
+| ♻️ | Переработка (было готово, изменились требования) |
+| 📋 | Запланировано, не начато |
+| ❌ | Заблокировано |
 
-## on_idle Hook
+## Хук on_idle
 
-When Claude has been idle for 30 minutes, run:
+Когда Claude простаивает 30 минут, запускается:
 
 ```bash
 python3 .claude/skills/project-reports/scripts/daily.py --mode auto
 ```
 
-The script checks if a manual report already exists for today.
-If yes — skip. If no — write auto report from git log.
+Скрипт проверяет, есть ли ручной отчёт за сегодня.
+Если есть — пропускает. Если нет — создаёт авто-отчёт из git log.
 
-## Context for Next Session
+## Контекст для следующей сессии
 
-At the start of a new session, read:
+В начале новой сессии прочитать:
 ```
-.claude/reports/daily/DD_MM_YYYY.md   ← yesterday's report
-.claude/reports/progress.md            ← current project state
+.claude/reports/daily/DD_MM_YYYY.md   ← отчёт за вчера
+.claude/reports/progress.md            ← текущее состояние проекта
 ```
-This replaces the need to explain context manually.
+Это заменяет необходимость объяснять контекст вручную.

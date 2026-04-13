@@ -165,40 +165,40 @@ def build_report(
 
     # Commits section
     if commits:
-        lines.append("## ✅ Commits")
+        lines.append("## ✅ Коммиты")
         for c in commits:
             lines.append(f"- `{c['hash']}` {c['time']} — {c['message']}")
         lines.append("")
     else:
-        lines.append("## ✅ Commits")
-        lines.append("- No commits today")
+        lines.append("## ✅ Коммиты")
+        lines.append("- Коммитов за сегодня нет")
         lines.append("")
 
     # Changed files
     if changed_files:
-        lines.append("## 📁 Changed Files")
+        lines.append("## 📁 Изменённые файлы")
         lines.extend(changed_files)
         lines.append("")
 
     # Sections for manual mode (filled by user/Claude)
     if mode == "manual":
         lines += [
-            "## 🔄 In Progress",
+            "## 🔄 В работе",
             "- ",
             "",
-            "## ❌ Blockers",
-            "- None",
+            "## ❌ Блокеры",
+            "- Нет",
             "",
-            "## 📎 Context for Next Session",
-            "- Continue from: ",
-            "- Waiting for: ",
+            "## 📎 Контекст для следующей сессии",
+            "- Продолжить с: ",
+            "- Ожидаю: ",
             "",
         ]
     else:
         lines += [
-            "## 📎 Auto-generated",
-            f"- Report generated automatically (on_idle trigger)",
-            "- Edit manually to add context for next session",
+            "## 📎 Авто-генерация",
+            f"- Отчёт создан автоматически (триггер on_idle)",
+            "- Отредактируй вручную для добавления контекста",
             "",
         ]
 

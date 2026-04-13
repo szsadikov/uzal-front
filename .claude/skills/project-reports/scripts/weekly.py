@@ -55,19 +55,19 @@ def read_daily_report(reports_dir: Path, dt: datetime) -> dict | None:
 
     section = None
     for line in lines:
-        if line.startswith("## ✅ Commits"):
+        if line.startswith("## ✅ Коммиты"):
             section = "commits"
-        elif line.startswith("## 📁 Changed Files"):
+        elif line.startswith("## 📁 Изменённые файлы"):
             section = "files"
-        elif line.startswith("## 🔄 In Progress"):
+        elif line.startswith("## 🔄 В работе"):
             section = "progress"
-        elif line.startswith("## ❌ Blockers"):
+        elif line.startswith("## ❌ Блокеры"):
             section = "blockers"
         elif line.startswith("## "):
             section = None
         elif line.startswith("- ") and section:
             value = line[2:].strip()
-            if not value or value == "None":
+            if not value or value in ("None", "Нет"):
                 continue
             if section == "commits":
                 commits.append(value)
@@ -116,50 +116,50 @@ def build_weekly_report(
         f"generated: {datetime.now().strftime('%d_%m_%Y')}",
         "---",
         "",
-        f"# Week {week_number} {year} | {project_name}",
+        f"# Неделя {week_number} {year} | {project_name}",
         "",
-        f"**Active days:** {len(active_days)} / 7",
-        f"**Total commits:** {len(all_commits)}",
+        f"**Активных дней:** {len(active_days)} / 7",
+        f"**Всего коммитов:** {len(all_commits)}",
         "",
     ]
 
     # Daily breakdown
-    lines.append("## 📅 Daily Summary")
+    lines.append("## 📅 Сводка по дням")
     for day in days:
         if day is None:
             continue
         date_str = format_date_human(day["date"])
         commit_count = len(day["commits"])
         if commit_count > 0:
-            lines.append(f"- **{date_str}** — {commit_count} commits")
+            lines.append(f"- **{date_str}** — {commit_count} коммитов")
         else:
-            lines.append(f"- **{date_str}** — no commits")
+            lines.append(f"- **{date_str}** — коммитов нет")
     lines.append("")
 
     # All commits this week
     if all_commits:
-        lines.append("## ✅ All Commits This Week")
+        lines.append("## ✅ Все коммиты за неделю")
         for c in all_commits:
             lines.append(f"- {c}")
         lines.append("")
 
     # Still in progress
     if in_progress_items:
-        lines.append("## 🔄 Still In Progress")
+        lines.append("## 🔄 В работе")
         for item in in_progress_items:
             lines.append(f"- {item}")
         lines.append("")
 
     # Blockers this week
     if all_blockers:
-        lines.append("## ❌ Blockers This Week")
+        lines.append("## ❌ Блокеры за неделю")
         for b in all_blockers:
             lines.append(f"- {b}")
         lines.append("")
 
     # Summary for progress.md
     lines += [
-        "## 📎 Notes for Next Week",
+        "## 📎 Заметки на следующую неделю",
         "- ",
         "",
     ]
@@ -185,7 +185,7 @@ def main():
 
     week_dates = get_week_dates(week_number, year)
 
-    print(f"📊 Generating weekly report for W{week_number:02d} {year}...")
+    print(f"📊 Генерирую недельный отчёт W{week_number:02d} {year}...")
 
     days_data = []
     for dt in week_dates:
@@ -200,8 +200,8 @@ def main():
     report_path.write_text(report)
 
     active = len([d for d in days_data if d and d["has_data"]])
-    print(f"\n✅ Weekly report saved: {report_path}")
-    print(f"   Active days: {active}/7")
+    print(f"\n✅ Недельный отчёт сохранён: {report_path}")
+    print(f"   Активных дней: {active}/7")
 
 
 if __name__ == "__main__":
