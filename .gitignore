@@ -32,3 +32,4 @@ TODO.txt
 .husky
 .claude/settings.local.json
 .claude/launch.json
+CLAUDE.local.md
