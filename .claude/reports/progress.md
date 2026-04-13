@@ -1,6 +1,6 @@
 # dreamy-blackburn — Project Progress
 
-> Last updated: 13 04 2026 | Branch: `claude/dreamy-blackburn`
+> Last updated: 13 04 2026 | Branch: `main`
 
 ---
 
