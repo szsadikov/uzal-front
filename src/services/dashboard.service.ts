@@ -35,5 +35,17 @@ export const DashboardService = {
 
 	async getMonthlyStats<T>(params?: Record<string, unknown>) {
 		return apiInstance.get<T>('/dashboard/monthly-stats/', { params })
+	},
+
+	async getMarketingStats<T>(params?: Record<string, unknown>) {
+		return apiInstance.get<T>('/dashboard/marketing-stats/', { params })
+	},
+
+	async getRegionalStats<T>(params?: Record<string, unknown>) {
+		return apiInstance.get<T>('/dashboard/regional-stats/', { params })
+	},
+
+	async getEquipmentByRegion<T>(params?: Record<string, unknown>) {
+		return apiInstance.get<T>('/dashboard/equipment-by-region/', { params })
 	}
 }

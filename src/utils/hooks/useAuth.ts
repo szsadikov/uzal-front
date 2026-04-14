@@ -3,17 +3,28 @@ import type { SignInCredential, SignUpCredential } from '@/@types/auth.types'
 import appConfig from '@/configs/app.config'
 import { REDIRECT_URL_KEY } from '@/constants/app.constant'
 import {
-	MARKETING, SALES, JURIST, EXPEDITOR, ACCOUNTANT, FINANCE, ZAMPRED,
-	BRANCH_DIRECTOR, BRANCH_ZAMDIRECTOR, BRANCH_SPECIALIST_LIZING_OPERATIONS,
-	BRANCH_JURIST, BRANCH_ACCOUNTANT, BRANCH_MAIN_ACCOUNTANT,
-	MONITORING, ZAMPREDMONITORING
+	ACCOUNTANT,
+	BRANCH_ACCOUNTANT,
+	BRANCH_DIRECTOR,
+	BRANCH_JURIST,
+	BRANCH_MAIN_ACCOUNTANT,
+	BRANCH_SPECIALIST_LIZING_OPERATIONS,
+	BRANCH_ZAMDIRECTOR,
+	EXPEDITOR,
+	FINANCE,
+	JURIST,
+	MARKETING,
+	MONITORING,
+	SALES,
+	ZAMPRED,
+	ZAMPREDMONITORING
 } from '@/constants/roles.constant'
 import { AuthService } from '@/services/auth.service'
 import { signInSuccess, signOutSuccess, useAppDispatch, useAppSelector } from '@/store'
 import { clearAuthData, saveAuthData } from '@/utils/auth.utils'
 import { useQueryParams } from './useQueryParams'
 
-const OFFICE_ROLES = [MARKETING, SALES, JURIST, EXPEDITOR, ACCOUNTANT, FINANCE, ZAMPRED]
+const OFFICE_ROLES = [SALES, JURIST, EXPEDITOR, ACCOUNTANT, FINANCE, ZAMPRED]
 const BRANCH_ROLES = [
 	BRANCH_DIRECTOR, BRANCH_ZAMDIRECTOR, BRANCH_SPECIALIST_LIZING_OPERATIONS,
 	BRANCH_JURIST, BRANCH_ACCOUNTANT, BRANCH_MAIN_ACCOUNTANT
@@ -21,9 +32,11 @@ const BRANCH_ROLES = [
 const MONITORING_ROLES = [MONITORING, ZAMPREDMONITORING]
 
 export function getEntryPathByRole(role: string): string {
+	if (role === MARKETING) return '/dashboard/marketing'
 	if (OFFICE_ROLES.includes(role as never)) return '/dashboard/office'
 	if (BRANCH_ROLES.includes(role as never)) return '/dashboard/branch'
 	if (MONITORING_ROLES.includes(role as never)) return '/dashboard/monitoring'
+
 	return appConfig.authenticatedEntryPath
 }
 

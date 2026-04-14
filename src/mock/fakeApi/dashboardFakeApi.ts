@@ -331,17 +331,103 @@ export default function dashboardFakeApi(server: Server, apiPrefix: string) {
 
 	// ── GET /api/v1/dashboard/monthly-stats/ ────────────────────────────────
 	server.get(`${apiPrefix}/dashboard/monthly-stats/`, () => ([
-		{ month: 'Янв', new: 8,  current: 15, completed: 3 },
-		{ month: 'Фев', new: 10, current: 18, completed: 4 },
-		{ month: 'Мар', new: 13, current: 20, completed: 5 },
-		{ month: 'Апр', new: 11, current: 22, completed: 6 },
-		{ month: 'Май', new: 15, current: 25, completed: 7 },
-		{ month: 'Июн', new: 18, current: 28, completed: 9 },
-		{ month: 'Июл', new: 16, current: 26, completed: 8 },
-		{ month: 'Авг', new: 19, current: 30, completed: 10 },
-		{ month: 'Сен', new: 12, current: 24, completed: 7 },
-		{ month: 'Окт', new: 14, current: 27, completed: 8 },
-		{ month: 'Ноя', new: 12, current: 22, completed: 6 },
-		{ month: 'Дек', new: 9,  current: 19, completed: 5 },
+		{ month: 'Янв', applications: 5,  new: 8,  current: 15, completed: 3 },
+		{ month: 'Фев', applications: 7,  new: 10, current: 18, completed: 4 },
+		{ month: 'Мар', applications: 9,  new: 13, current: 20, completed: 5 },
+		{ month: 'Апр', applications: 8,  new: 11, current: 22, completed: 6 },
+		{ month: 'Май', applications: 11, new: 15, current: 25, completed: 7 },
+		{ month: 'Июн', applications: 14, new: 18, current: 28, completed: 9 },
+		{ month: 'Июл', applications: 12, new: 16, current: 26, completed: 8 },
+		{ month: 'Авг', applications: 15, new: 19, current: 30, completed: 10 },
+		{ month: 'Сен', applications: 10, new: 12, current: 24, completed: 7 },
+		{ month: 'Окт', applications: 12, new: 14, current: 27, completed: 8 },
+		{ month: 'Ноя', applications: 9,  new: 12, current: 22, completed: 6 },
+		{ month: 'Дек', applications: 7,  new: 9,  current: 19, completed: 5 },
+	]))
+
+	// ── GET /api/v1/dashboard/marketing-stats/ ───────────────────────────────
+	server.get(`${apiPrefix}/dashboard/marketing-stats/`, () => ({
+		applications_count: 12,
+		applications_by_status: { 1: 3, 2: 3, 3: 1, 4: 3, 5: 1, 6: 1 },
+		new_contracts_count: 47,
+		new_contracts_by_status: { 1: 20, 2: 15, 3: 8, 4: 2, 5: 2, 6: 0, 7: 0 },
+		current_contracts_count: 87,
+		completed_contracts_count: 35
+	}))
+
+	// ── GET /api/v1/dashboard/regional-stats/ ───────────────────────────────
+	server.get(`${apiPrefix}/dashboard/regional-stats/`, () => ([
+		{ region_id: 1,  name_ru: 'Ташкентская область',        applications_count: 3, new_contracts_count: 8,  current_contracts_count: 18 },
+		{ region_id: 2,  name_ru: 'Самаркандская область',      applications_count: 2, new_contracts_count: 6,  current_contracts_count: 12 },
+		{ region_id: 3,  name_ru: 'Ферганская область',         applications_count: 2, new_contracts_count: 5,  current_contracts_count: 10 },
+		{ region_id: 4,  name_ru: 'Андижанская область',        applications_count: 1, new_contracts_count: 5,  current_contracts_count: 9  },
+		{ region_id: 5,  name_ru: 'Наманганская область',       applications_count: 1, new_contracts_count: 4,  current_contracts_count: 8  },
+		{ region_id: 6,  name_ru: 'Бухарская область',          applications_count: 1, new_contracts_count: 4,  current_contracts_count: 7  },
+		{ region_id: 7,  name_ru: 'Навоийская область',         applications_count: 1, new_contracts_count: 3,  current_contracts_count: 7  },
+		{ region_id: 8,  name_ru: 'Кашкадарьинская область',    applications_count: 0, new_contracts_count: 3,  current_contracts_count: 6  },
+		{ region_id: 9,  name_ru: 'Сурхандарьинская область',   applications_count: 0, new_contracts_count: 3,  current_contracts_count: 4  },
+		{ region_id: 10, name_ru: 'Джизакская область',         applications_count: 0, new_contracts_count: 2,  current_contracts_count: 3  },
+		{ region_id: 11, name_ru: 'Сырдарьинская область',      applications_count: 1, new_contracts_count: 2,  current_contracts_count: 2  },
+		{ region_id: 12, name_ru: 'Хорезмская область',         applications_count: 0, new_contracts_count: 1,  current_contracts_count: 1  },
+		{ region_id: 13, name_ru: 'Республика Каракалпакстан',  applications_count: 0, new_contracts_count: 1,  current_contracts_count: 0  },
+		{ region_id: 14, name_ru: 'г. Ташкент',                applications_count: 0, new_contracts_count: 0,  current_contracts_count: 0  },
+	]))
+
+	// ── GET /api/v1/dashboard/equipment-by-region/ ──────────────────────────
+	server.get(`${apiPrefix}/dashboard/equipment-by-region/`, () => ([
+		{
+			region: { id: 1, name_ru: 'Ташкентская область' },
+			equipment: [
+				{ manufacturer: 'John Deere',  model: '5090E',        count: 3, total_amount: '1380000000', avg_price: '460000000' },
+				{ manufacturer: 'Case IH',     model: 'Puma 185',     count: 2, total_amount: '1040000000', avg_price: '520000000' },
+				{ manufacturer: 'Fendt',       model: '724 Vario',    count: 1, total_amount: '750000000',  avg_price: '750000000' },
+			]
+		},
+		{
+			region: { id: 2, name_ru: 'Самаркандская область' },
+			equipment: [
+				{ manufacturer: 'New Holland', model: 'T7.210',       count: 2, total_amount: '760000000',  avg_price: '380000000' },
+				{ manufacturer: 'John Deere',  model: '6130R',        count: 1, total_amount: '560000000',  avg_price: '560000000' },
+			]
+		},
+		{
+			region: { id: 3, name_ru: 'Ферганская область' },
+			equipment: [
+				{ manufacturer: 'Claas',       model: 'Axion 850',    count: 2, total_amount: '1780000000', avg_price: '890000000' },
+				{ manufacturer: 'New Holland', model: 'T5.115',       count: 1, total_amount: '310000000',  avg_price: '310000000' },
+			]
+		},
+		{
+			region: { id: 4, name_ru: 'Андижанская область' },
+			equipment: [
+				{ manufacturer: 'Fendt',       model: '516 Vario',    count: 2, total_amount: '1360000000', avg_price: '680000000' },
+			]
+		},
+		{
+			region: { id: 5, name_ru: 'Наманганская область' },
+			equipment: [
+				{ manufacturer: 'Claas',       model: 'Xerion 4000',  count: 1, total_amount: '940000000',  avg_price: '940000000' },
+				{ manufacturer: 'Massey Ferguson', model: '5712',     count: 1, total_amount: '310000000',  avg_price: '310000000' },
+			]
+		},
+		{
+			region: { id: 6, name_ru: 'Бухарская область' },
+			equipment: [
+				{ manufacturer: 'Deutz-Fahr',  model: 'Agrotron 6160', count: 2, total_amount: '1020000000', avg_price: '510000000' },
+			]
+		},
+		{
+			region: { id: 7, name_ru: 'Навоийская область' },
+			equipment: [
+				{ manufacturer: 'Massey Ferguson', model: '7726',     count: 1, total_amount: '430000000',  avg_price: '430000000' },
+			]
+		},
+		{ region: { id: 8,  name_ru: 'Кашкадарьинская область'   }, equipment: [] },
+		{ region: { id: 9,  name_ru: 'Сурхандарьинская область'  }, equipment: [] },
+		{ region: { id: 10, name_ru: 'Джизакская область'         }, equipment: [] },
+		{ region: { id: 11, name_ru: 'Сырдарьинская область'      }, equipment: [] },
+		{ region: { id: 12, name_ru: 'Хорезмская область'         }, equipment: [] },
+		{ region: { id: 13, name_ru: 'Республика Каракалпакстан'  }, equipment: [] },
+		{ region: { id: 14, name_ru: 'г. Ташкент'                 }, equipment: [] },
 	]))
 }

@@ -7,10 +7,13 @@ import eslint from 'vite-plugin-eslint2'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '')
+	const worktreeRoot = process.cwd()
 
 	console.log('VITE_API_SERVER_URL:---', env.VITE_API_SERVER_URL)
+	console.log('VITE ROOT (worktree):', worktreeRoot)
 
 	return {
+		root: worktreeRoot,
 		base: process.env.NODE_ENV === 'production' ? '/uzal-front/' : '/',
 		server: {
 			port: 3000
@@ -35,7 +38,7 @@ export default defineConfig(({ mode }) => {
 		assetsInclude: ['**/*.md'],
 		resolve: {
 			alias: {
-				'@': path.join(__dirname, 'src')
+				'@': path.join(worktreeRoot, 'src')
 			}
 		},
 		build: {

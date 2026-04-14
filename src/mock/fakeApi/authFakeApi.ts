@@ -11,12 +11,17 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
 			password: body.password
 		})
 		if (user) {
+			const isMarketing = user.accountUserName === 'marketing'
+			const roleInfo = isMarketing
+				? { role: 'marketing', role_id: 3, role_obj: { id: 3, name: 'marketing', name_ru: 'Маркетинг', name_uz: 'Marketing' } }
+				: { role: 'admin', role_id: 2, role_obj: { id: 2, name: 'admin', name_ru: 'Администратор', name_uz: 'Administrator' } }
+
 			return {
 				token: 'mock-dev-token-abc123',
 				user: {
-					id: 1,
+					id: isMarketing ? 22 : 1,
 					username: user.accountUserName,
-					first_name: 'Админ',
+					first_name: isMarketing ? 'Маркетинг' : 'Админ',
 					middle_name: '',
 					last_name: 'Пользователь',
 					phone_number: '+998901234567',
@@ -25,15 +30,9 @@ export default function authFakeApi(server: Server, apiPrefix: string) {
 					is_active: true,
 					profile_picture: '',
 					last_login: new Date().toISOString(),
-					// ВАЖНО: роль должна быть 'admin' (не 'superadmin').
-					// С ролью 'admin' сайдбар показывает: Реестр пользователей, Сотрудники, Филиалы, Договор, SMS сервис.
-					// Если поменять на 'superadmin' — Реестр пользователей пропадёт (authority: [ADMIN] only)
-					// и появятся все остальные разделы (Каталог, Склад, Мониторинг и т.д.).
-					role: 'admin',
-					role_id: 2,
-					parent_role_id: 2,
+					...roleInfo,
+					parent_role_id: roleInfo.role_id,
 					procuration_number: 0,
-					role_obj: { id: 2, name: 'admin', name_ru: 'Администратор', name_uz: 'Administrator' },
 					region: { id: 1, name_ru: 'Ташкентская область', name_uz: 'Toshkent viloyati', region_code: '10' }
 				}
 			}

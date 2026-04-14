@@ -52,7 +52,7 @@ export function getEntryPathByRole(role: string): string {
 
 Поменяй `role` в `src/mock/fakeApi/authFakeApi.ts` и перелогинься:
 ```ts
-role: 'marketing'       // → /dashboard/office
+role: 'marketing'       // → /dashboard/marketing
 role: 'branch_director' // → /dashboard/branch
 role: 'monitoring'      // → /dashboard/monitoring
 role: 'admin'           // → /  (восстанови после теста!)

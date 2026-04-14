@@ -32,10 +32,16 @@ export const protectedRoutes: Routes = [
 		authority: [SUPERADMIN, ADMIN]
 	},
 	{
+		key: 'dashboard_marketing',
+		path: '/dashboard/marketing',
+		component: lazy(() => import('@/views/home/marketing/MarketingDashboard')),
+		authority: [MARKETING]
+	},
+	{
 		key: 'dashboard_office',
 		path: '/dashboard/office',
 		component: lazy(() => import('@/views/home/office/OfficeDashboard')),
-		authority: [MARKETING, SALES, JURIST, EXPEDITOR, ACCOUNTANT, FINANCE, ZAMPRED]
+		authority: [SALES, JURIST, EXPEDITOR, ACCOUNTANT, FINANCE, ZAMPRED]
 	},
 	{
 		key: 'dashboard_branch',
